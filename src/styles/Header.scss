@@ -1,0 +1,208 @@
+#header {
+  border-top: 8px solid rgb(247, 154, 14);
+  height: 7.5rem;
+  width: 100%;
+  box-shadow: 0 1px 15px rgba(46, 45, 45, 0.774);
+
+  img {
+    position: absolute;
+    display: flex;
+    left: 15%;
+    width: 100px;
+    height: 100px;
+    z-index: -1;
+  }
+
+  .navbar {
+    width: 60%;
+    margin-left: 25% !important;
+    margin: auto;
+  }
+
+  .inputs {
+    margin-top: 5px;
+    display: flex;
+    height: 50px;
+  }
+
+  .searchInput {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .searchBox {
+    width: 380px;
+    display: flex;
+    padding: 12px;
+    padding-left: 25px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.363);
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  input[type="search"]::placeholder {
+    opacity: 0.8;
+    font-size: 13px;
+  }
+
+  .searchIcon svg {
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    width: 25px;
+    height: 25px;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .searchIcon svg:hover {
+    color: rgb(247, 154, 14);
+  }
+
+  .location {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .locationBtn {
+    display: flex;
+    height: 40px;
+    margin-left: 10px;
+    width: 190px;
+    font-weight: 400;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .location:hover,
+  .locationBtn:hover {
+    color: rgb(247, 154, 14);
+  }
+
+  .locationIcon svg {
+    position: absolute;
+    top: 30%;
+    left: 18%;
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .otherIcon {
+    display: flex;
+    margin: 5px 50px 0 50px;
+  }
+
+  .otherIcon svg {
+    margin: 8px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .otherIcon svg:hover {
+    color: rgb(247, 154, 14);
+  }
+
+  .buttons {
+    margin-top: 5px !important;
+    margin: auto;
+    align-items: center;
+  }
+
+  select {
+    width: 180px;
+    background-color: rgb(247, 154, 14);
+    padding-right: 15px;
+    color: white;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 15px;
+    outline: none;
+  }
+
+  .buttons button {
+    margin-left: 30px;
+    background-color: transparent;
+    border: none;
+    font-weight: 400;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 1px;
+  }
+
+  .buttons button:hover {
+    color: rgb(247, 154, 14);
+  }
+
+  .buttons .contactBtn {
+    border: 1px solid rgb(247, 154, 14);
+    padding: 0px 5px 0px 5px;
+    border-radius: 5px;
+    margin-left: 3.5rem;
+    width: 80px;
+    height: 25px;
+  }
+
+  .checkOption {
+    position: absolute;
+    right: 25%;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 5;
+    height: 7.5rem;
+    flex-direction: column;
+    border: 2px solid rgb(247, 154, 14);
+  }
+
+  .checkInput {
+    border: 1px solid gray;
+    outline: none;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 12px;
+    padding-left: 25px;
+  }
+
+  .checkOption button {
+    cursor: pointer;
+    border-radius: 5px;
+    width: 70px;
+    margin-left: 30px;
+    flex-direction: column;
+    border: 2px solid rgb(247, 154, 14);
+    color: black;
+    padding: 10px;
+    outline: none;
+  }
+
+  .close {
+    cursor: pointer;
+
+    border-radius: 5px;
+    background-color: rgba(255, 1, 1, 0.822);
+    border: none !important;
+    margin-top: 4px;
+    margin-left: 12rem;
+    outline: none;
+    color: white !important;
+  }
+}
