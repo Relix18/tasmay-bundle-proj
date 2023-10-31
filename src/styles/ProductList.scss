@@ -1,0 +1,40 @@
+#productList {
+  display: flex;
+  margin: 0 1rem 1rem 2rem;
+  flex-flow: row wrap;
+  align-content: flex-start;
+
+  .card {
+    position: relative;
+    width: 10rem;
+    margin: 0rem 0.5rem 1rem 0.5rem;
+    height: 20rem;
+    padding: 0.5rem 1rem 0rem 1rem;
+    border: 2px solid orange;
+
+    img {
+      border: none;
+      width: 15rem;
+      height: 12rem;
+      object-fit: contain;
+    }
+
+    h3 {
+      position: absolute;
+      bottom: 15%;
+      color: rgb(18, 197, 18);
+    }
+
+    button {
+      position: absolute;
+      background-color: orange;
+      left: 0;
+      bottom: 0;
+      border: none;
+      color: white;
+      width: 12rem;
+      cursor: pointer;
+      height: 2.3rem;
+    }
+  }
+}
