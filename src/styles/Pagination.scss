@@ -1,0 +1,30 @@
+#Pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+
+  .active {
+    background-color: orange;
+    color: white;
+    border: none;
+  }
+
+  .active:hover {
+    color: white;
+  }
+
+  .btn {
+    width: 50px;
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  button:hover {
+    color: orange;
+  }
+}
