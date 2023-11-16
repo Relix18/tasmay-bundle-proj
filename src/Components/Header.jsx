@@ -5,6 +5,7 @@ import { BsCart3 } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const zipCodes = ["229206", "229309", "229308", "229001", "229301", "229231"];
@@ -41,7 +42,9 @@ const Header = () => {
 
   return (
     <div id="header">
+      {/* <Link to={"/"}> */}
       <img src={logo} alt="Logo" className="logo" />
+      {/* </Link> */}
 
       <div className="navbar">
         <div className="inputs">
@@ -99,13 +102,21 @@ const Header = () => {
             </div>
           )}
           <div className="otherIcon">
-            <BsCart3 />
+            <Link className="cart" to="/cart">
+              <BsCart3 />
+              <p>0</p>
+            </Link>
             <AiOutlineUser />
           </div>
         </div>
         <div className="buttons">
           <select>
             <option>Shop by category</option>
+            <option>Almonds/Badam</option>
+            <option>Basmati Rice</option>
+            <option>Bathing Bars & Soaps</option>
+            <option>Blended Masalas</option>
+            <option>Body Lotion & Cream</option>
           </select>
           <button>Oil & Spicies</button>
           <button>Grains</button>

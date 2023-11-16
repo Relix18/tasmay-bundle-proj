@@ -1,0 +1,157 @@
+#emptyCart {
+  border: 2px solid orange;
+  width: 60%;
+  display: flex;
+  margin-top: 2rem !important;
+  margin: auto;
+  height: 15rem;
+
+  h2 {
+    display: flex;
+    margin: auto;
+  }
+}
+
+#Cart {
+  display: grid;
+  width: 80%;
+  margin: auto;
+  grid-template-columns: 3fr 1fr;
+  margin-top: 2rem;
+
+  .box {
+    border: 2px solid orange;
+  }
+
+  .items {
+    margin: 0 1rem 0 0 !important;
+
+    h3 {
+      display: flex;
+      margin: 1rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .itemDetail {
+      position: relative;
+      display: flex;
+      border-top: 2px solid gray;
+
+      img {
+        margin: 1rem;
+        width: 12rem;
+        height: 6rem;
+      }
+
+      .pClass {
+        font-weight: 500;
+        margin-top: 1.5rem;
+
+        .productName {
+          font-size: 1.2rem;
+        }
+        .productBrand {
+          font-size: 1rem;
+        }
+        .amount {
+          font-weight: 800;
+          margin-top: 1rem;
+          font-size: 1rem;
+        }
+      }
+
+      .quantityBtn {
+        display: flex;
+        position: absolute;
+        right: 1rem;
+        top: 3rem;
+        align-items: center;
+
+        p {
+          margin: 0 0.5rem 0 0.5rem;
+        }
+
+        button {
+          width: 2rem;
+          height: 2rem;
+          border: 1px solid gray;
+          font-size: 20px;
+          border-radius: 50%;
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin: auto;
+
+      button {
+        width: 10rem;
+        font-size: 0.8rem;
+        background-color: orange;
+        color: white;
+        border: none;
+        cursor: pointer;
+        height: 2rem;
+        text-transform: uppercase;
+      }
+
+      .btn1 {
+        clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+      }
+      .btn2 {
+        clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+        margin-left: -12px;
+      }
+    }
+  }
+
+  .price {
+    height: 18rem;
+    position: relative;
+    h3 {
+      display: flex;
+      margin-top: 0.5rem;
+      justify-content: center;
+      text-transform: uppercase;
+      font-weight: 800;
+      align-items: center;
+    }
+
+    .details {
+      display: flex;
+      align-items: center;
+      margin: 1rem;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .total {
+      display: flex;
+      margin: 0.5rem;
+      font-weight: 700;
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+    }
+
+    button {
+      position: absolute;
+      text-transform: uppercase;
+      background-color: orange;
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      width: 100%;
+      height: 2rem;
+      bottom: 0;
+    }
+  }
+}
