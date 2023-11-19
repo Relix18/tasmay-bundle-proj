@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/ProductList.scss";
 import data from "../data";
-import Pagination from "./Pagination";
+import Pagination from "./Pagination.jsx";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
