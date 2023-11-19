@@ -6,6 +6,7 @@ import { IoIosSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const zipCodes = ["229206", "229309", "229308", "229001", "229301", "229231"];
@@ -14,6 +15,8 @@ const Header = () => {
   const [zipSearch, setZipSearch] = useState("");
   const [zipRes, setZipRes] = useState("");
   const clearSearch = useRef("");
+
+  const { cartItems } = useSelector((state) => state.cart);
 
   const zipCodeToggleHandler = () => {
     if (zipCodeToggle === true) {
@@ -42,9 +45,9 @@ const Header = () => {
 
   return (
     <div id="header">
-      {/* <Link to={"/"}> */}
-      <img src={logo} alt="Logo" className="logo" />
-      {/* </Link> */}
+      <Link to={"/"} className="logo">
+        <img src={logo} alt="Logo" />
+      </Link>
 
       <div className="navbar">
         <div className="inputs">
@@ -104,7 +107,7 @@ const Header = () => {
           <div className="otherIcon">
             <Link className="cart" to="/cart">
               <BsCart3 />
-              <p>0</p>
+              <p>{cartItems.length}</p>
             </Link>
             <AiOutlineUser />
           </div>
