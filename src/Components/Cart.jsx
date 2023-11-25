@@ -1,55 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Cart.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { cartAsync, deleteAsync, updateAsync } from "../redux/cart/cartSlice";
 
 const Cart = () => {
-  const { cartItems, subTotal, tax, shipping, total } = useSelector(
-    (state) => state.cart
-  );
+  const items = useSelector((state) => state.cart.items);
+
+  const sum = items.reduce((acc, item) => item.price * item.qty + acc, 0);
+  const subTotal = sum;
+  const shipping = subTotal > 500 ? 0 : 50;
+  const tax = +(subTotal * 0.18).toFixed();
+  const total = subTotal + tax + shipping;
+
+  useEffect(() => {
+    dispatch(cartAsync());
+  }, []);
   const dispatch = useDispatch();
-
-  const increment = (id) => {
-    dispatch({
-      type: "addToCart",
-      payload: { id },
-    });
-    dispatch({ type: "calculatePrice" });
-  };
-
-  const decrement = (id) => {
-    dispatch({
-      type: "decrement",
-      payload: id,
-    });
-    dispatch({ type: "calculatePrice" });
-  };
-
-  const deleteHandler = (id) => {
-    dispatch({
-      type: "deleteFromCart",
-      payload: id,
-    });
-    dispatch({ type: "calculatePrice" });
-  };
 
   return (
     <>
       <div id="Cart">
         <div className="items box">
           <h3>Shopping Cart</h3>
-          {cartItems.length > 0 ? (
-            cartItems.map((i) => (
+          {items.length > 0 ? (
+            items.map((i) => (
               <Card
                 thumbnail={i.thumbnail}
                 title={i.title}
                 price={i.price}
-                qty={i.quantity}
+                qty={i.qty}
                 id={i.id}
                 brand={i.brand}
                 key={i.id}
-                increment={increment}
-                decrement={decrement}
-                deleteHandler={deleteHandler}
               />
             ))
           ) : (
@@ -95,40 +77,57 @@ const Cart = () => {
   );
 };
 
-const Card = ({
-  thumbnail,
-  title,
-  price,
-  brand,
+const Card = ({ thumbnail, title, price, brand, id, qty }) => {
+  const [quantity, setQuantity] = useState(qty);
+  const dispatch = useDispatch();
 
-  id,
-  qty,
-  increment,
-  decrement,
-  deleteHandler,
-}) => (
-  <div className="itemCard">
-    <div className="itemDetail">
-      <img src={thumbnail} alt="" />
-      <div className="pClass">
-        <p className="productName">{title}</p>
-        <p className="productBrand">{brand}</p>
+  const increment = (id) => {
+    setQuantity(quantity + 1);
+    dispatch(updateAsync({ id, change: { qty: quantity + 1 } }));
+  };
 
-        <p className="amount">${price}</p>
+  const decrement = (id) => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+    dispatch(
+      updateAsync({
+        id,
+        change: {
+          qty: quantity > 1 ? quantity - 1 : dispatch(deleteAsync(id)),
+        },
+      })
+    );
+  };
+
+  const deleteHandler = (id) => {
+    dispatch(deleteAsync(id));
+  };
+
+  return (
+    <div className="itemCard">
+      <div className="itemDetail">
+        <img src={thumbnail} alt="" />
+        <div className="pClass">
+          <p className="productName">{title}</p>
+          <p className="productBrand">{brand}</p>
+
+          <p className="amount">${price}</p>
+        </div>
+        <div className="quantityBtn">
+          <button onClick={() => decrement(id)}> -</button>
+          <p>{quantity}</p>
+          <button onClick={() => increment(id)}>+</button>
+        </div>
       </div>
-      <div className="quantityBtn">
-        <button onClick={() => decrement(id)}> -</button>
-        <p>{qty}</p>
-        <button onClick={() => increment(id)}>+</button>
+      <div className="buttons">
+        <button className="btn1">Save For Later</button>
+        <button onClick={() => deleteHandler(id)} className="btn2">
+          Remove
+        </button>
       </div>
     </div>
-    <div className="buttons">
-      <button className="btn1">Save For Later</button>
-      <button onClick={() => deleteHandler(id)} className="btn2">
-        Remove
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 export default Cart;

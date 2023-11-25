@@ -16,7 +16,7 @@ const Header = () => {
   const [zipRes, setZipRes] = useState("");
   const clearSearch = useRef("");
 
-  const { cartItems } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.cart);
 
   const zipCodeToggleHandler = () => {
     if (zipCodeToggle === true) {
@@ -45,12 +45,11 @@ const Header = () => {
 
   return (
     <div id="header">
-      <Link to={"/"} className="logo">
-        <img src={logo} alt="Logo" />
-      </Link>
-
       <div className="navbar">
         <div className="inputs">
+          <Link to={"/"} className="logo">
+            <img src={logo} alt="Logo" />
+          </Link>
           <div className="searchInput">
             <input
               type="search"
@@ -71,11 +70,11 @@ const Header = () => {
               zipCodeToggleHandler();
             }}
           >
-            <span className="locationIcon">
-              <IoLocationSharp />
-            </span>
+            <span className="locationIcon"></span>
 
-            <button className="locationBtn">See locations</button>
+            <button className="locationBtn">
+              <IoLocationSharp className="locationIcon" /> See locations
+            </button>
           </div>
           {zipCodeToggle && (
             <div className="checkOption">
@@ -107,12 +106,13 @@ const Header = () => {
           <div className="otherIcon">
             <Link className="cart" to="/cart">
               <BsCart3 />
-              <p>{cartItems.length}</p>
+              <p>{items.length}</p>
             </Link>
             <AiOutlineUser />
           </div>
         </div>
         <div className="buttons">
+          <div className="emptyDiv"></div>
           <select>
             <option>Shop by category</option>
             <option>Almonds/Badam</option>
@@ -121,10 +121,12 @@ const Header = () => {
             <option>Blended Masalas</option>
             <option>Body Lotion & Cream</option>
           </select>
-          <button>Oil & Spicies</button>
-          <button>Grains</button>
-          <button>Organic</button>
-          <button>Personal Care</button>
+          <div className="catBtn">
+            <button>Oil & Spicies</button>
+            <button>Grains</button>
+            <button>Organic</button>
+            <button>Personal Care</button>
+          </div>
           <button className="contactBtn">Contact</button>
         </div>
       </div>

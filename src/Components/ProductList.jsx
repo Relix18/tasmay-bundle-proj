@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/ProductList.scss";
-import data from "../data";
-import Pagination from "./Pagination.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import Pagination from "./Pagination.jsx";
+import { productAsync } from "../redux/product/productSlice";
+import { addAsync, cartAsync } from "../redux/cart/cartSlice";
 
 const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
   const lastIndex = currentPage * postPerPage;
   const firstIndex = lastIndex - postPerPage;
-  const products = data.slice(firstIndex, lastIndex);
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.product.products);
 
-  const addToCartHandler = (options) => {
-    dispatch({ type: "addToCart", payload: options });
-    dispatch({ type: "calculatePrice" });
+  useEffect(() => {
+    dispatch(productAsync());
+    dispatch(cartAsync());
+  }, []);
+
+  const products = data.slice(firstIndex, lastIndex);
+
+  const addToCartHandler = (item) => {
+    dispatch(addAsync(item));
     toast.success("Added To Cart");
   };
 
@@ -30,7 +37,7 @@ const ProductList = () => {
             title={item.title}
             price={item.price}
             handler={addToCartHandler}
-            id={item.id}
+            item={item}
           />
         ))}
       </div>
@@ -46,6 +53,7 @@ const ProductList = () => {
 
 const ProductCard = ({
   id,
+  item,
   brand,
   thumbnail,
   title,
@@ -57,21 +65,7 @@ const ProductCard = ({
     <img src={thumbnail} alt="product" />
     <h5>{title}</h5>
     <h3>${price}</h3>
-    <button
-      onClick={() =>
-        handler({
-          id,
-          brand,
-          thumbnail,
-          title,
-
-          price,
-          quantity: 1,
-        })
-      }
-    >
-      ADD TO CART
-    </button>
+    <button onClick={() => handler(item)}>ADD TO CART</button>
   </div>
 );
 
