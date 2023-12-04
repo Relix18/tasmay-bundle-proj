@@ -20,7 +20,7 @@
   margin-bottom: 2rem;
 
   .box {
-    border: 2px solid orange;
+    border: 0.15rem solid orange;
   }
 
   .items {
@@ -36,7 +36,7 @@
     .itemDetail {
       position: relative;
       display: flex;
-      border-top: 2px solid gray;
+      border-top: 0.15rem solid gray;
 
       img {
         margin: 1rem;
@@ -76,8 +76,8 @@
         button {
           width: 2rem;
           height: 2rem;
-          border: 1px solid gray;
-          font-size: 20px;
+          border: 0.1rem solid gray;
+          font-size: 1.2rem;
           border-radius: 50%;
         }
       }
@@ -103,13 +103,13 @@
       }
       .btn2 {
         clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
-        margin-left: -12px;
+        margin-left: -0.85rem;
       }
     }
   }
 }
 #price {
-  border: 2px solid orange;
+  border: 0.15rem solid orange;
   height: 18rem;
   position: relative;
   h3 {

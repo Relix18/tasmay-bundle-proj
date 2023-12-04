@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/Cart.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAsync, deleteAsync, updateAsync } from "../redux/cart/cartSlice";
+import { Navigate } from "react-router-dom";
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.items);
@@ -94,7 +95,7 @@ const Card = ({ thumbnail, title, price, brand, id, qty }) => {
       updateAsync({
         id,
         change: {
-          qty: quantity > 1 ? quantity - 1 : dispatch(deleteAsync(id)),
+          qty: quantity > 1 ? quantity - 1 : "",
         },
       })
     );

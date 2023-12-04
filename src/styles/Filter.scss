@@ -1,5 +1,5 @@
 #filter {
-  border: 2px solid rgb(247, 154, 14);
+  border: 0.15rem solid rgb(247, 154, 14);
   border-radius: 15px;
 
   padding: 1rem;
@@ -24,7 +24,7 @@
   margin-bottom: 0rem;
 }
 label {
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 [type="radio"]:checked,

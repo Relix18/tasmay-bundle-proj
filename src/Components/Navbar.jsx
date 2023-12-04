@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "../styles/Header.scss";
+import "../styles/Navbar.scss";
 import logo from "../assets/logo.png";
 import { BsCart3 } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
@@ -44,7 +44,7 @@ const Header = () => {
   };
 
   return (
-    <div id="header">
+    <div id="Navbar">
       <div className="navbar">
         <div className="inputs">
           <Link to={"/"} className="logo">
@@ -108,7 +108,9 @@ const Header = () => {
               <BsCart3 />
               <p>{items.length}</p>
             </Link>
-            <AiOutlineUser />
+            <Link className="profile" to="/login">
+              <AiOutlineUser />
+            </Link>
           </div>
         </div>
         <div className="buttons">
