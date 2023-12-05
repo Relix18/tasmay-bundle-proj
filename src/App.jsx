@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Components/auth/Login";
 import ShowNavbar from "./Components/auth/ShowNavbar";
 import Signup from "./Components/auth/Signup";
+import ForgetPassword from "./Components/auth/ForgetPassword";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/forget-password" element={<ForgetPassword />} />
         <Route exact path="/cart" element={<Cart />} />
       </Routes>
       <Toaster />

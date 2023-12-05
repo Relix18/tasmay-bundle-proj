@@ -10,7 +10,6 @@ const Login = () => {
 
   return (
     <>
-      <div className="blurDiv"></div>
       <div id="Login">
         <div className="main">
           <div className="imgSection">
@@ -29,9 +28,11 @@ const Login = () => {
                 <input className="fill" type="password" required />
                 <label> password</label>
               </div>
-              <Link className="resetPass" to="/forget-password">
-                Forget Password?
-              </Link>
+              <div className="resetDiv">
+                <Link className="resetPass" to="/forget-password">
+                  Forget Password?
+                </Link>
+              </div>
               <button type="submit">Login</button>
             </form>
             <Link to="/signup" className="signup">

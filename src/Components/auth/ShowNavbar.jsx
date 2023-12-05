@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const ShowNavbar = ({ children }) => {
@@ -7,7 +7,11 @@ const ShowNavbar = ({ children }) => {
   const [showNavbar, setShowNavbar] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === "/login" || location.pathname === "/signup") {
+    if (
+      location.pathname === "/login" ||
+      location.pathname === "/signup" ||
+      location.pathname === "/forget-password"
+    ) {
       setShowNavbar(false);
     } else {
       setShowNavbar(true);
