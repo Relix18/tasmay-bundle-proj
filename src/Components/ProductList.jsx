@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/ProductList.scss";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
@@ -51,16 +51,7 @@ const ProductList = () => {
   );
 };
 
-const ProductCard = ({
-  id,
-  item,
-  brand,
-  thumbnail,
-  title,
-  price,
-
-  handler,
-}) => (
+const ProductCard = ({ id, item, brand, thumbnail, title, price, handler }) => (
   <div className="card">
     <img src={thumbnail} alt="product" />
     <h5>{title}</h5>

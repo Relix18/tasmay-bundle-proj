@@ -5,6 +5,7 @@
   margin: auto;
   display: flex;
   box-shadow: 0 1px 15px rgba(46, 45, 45, 0.774);
+  background-color: white;
 
   .navbar {
     width: 80%;
@@ -18,12 +19,23 @@
       .checkOption {
         position: absolute;
         right: 25%;
+        top: 1%;
         background-color: white;
         border-radius: 5px;
         z-index: 5;
         height: 7.5rem;
         flex-direction: column;
         border: 2px solid rgb(247, 154, 14);
+        animation: animate 0.2s ease-in-out;
+      }
+
+      @keyframes animate {
+        from {
+          scale: 0;
+        }
+        to {
+          scale: 1;
+        }
       }
 
       .checkInput {

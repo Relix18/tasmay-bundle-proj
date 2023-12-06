@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "../styles/Navbar.scss";
 import logo from "../assets/logo.png";
 import { BsCart3 } from "react-icons/bs";

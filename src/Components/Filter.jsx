@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Filter.scss";
 
 const Filter = () => {
@@ -9,50 +8,50 @@ const Filter = () => {
       <div className="availability option">
         <p>Availability</p>
         <input type="radio" name="available" id="available1" />
-        <label for="available1">Include Out of Stock</label>
+        <label htmlFor="available1">Include Out of Stock</label>
       </div>
       <div className="categories option">
         <p>Categories</p>
         <input type="radio" name="category" id="category1" />
-        <label for="category1">Almonds / Badam</label>
+        <label htmlFor="category1">Almonds / Badam</label>
         <br></br>
         <input type="radio" name="category" id="category2" />
-        <label for="category2">Basmati Rice</label>
+        <label htmlFor="category2">Basmati Rice</label>
         <br></br>
         <input type="radio" name="category" id="category3" />
-        <label for="category3">Bathing Bars & Soaps</label>
+        <label htmlFor="category3">Bathing Bars & Soaps</label>
         <br></br>
         <input type="radio" name="category" id="category4" />
-        <label for="category4">Blended Masalas</label>
+        <label htmlFor="category4">Blended Masalas</label>
         <br></br>
         <input type="radio" name="category" id="category5" />
-        <label for="category5">Body Lotion & Cream</label>
+        <label htmlFor="category5">Body Lotion & Cream</label>
       </div>
       <div className="brands option">
         <p>Brands</p>
         <input type="radio" name="brand" id="brand1" />
-        <label for="brand1">bb Combo</label>
+        <label htmlFor="brand1">bb Combo</label>
         <br></br>
         <input type="radio" name="brand" id="brand2" />
-        <label for="brand2">BB Royal</label>
+        <label htmlFor="brand2">BB Royal</label>
         <br></br>
         <input type="radio" name="brand" id="brand3" />
-        <label for="brand3">Farmogo</label>
+        <label htmlFor="brand3">Farmogo</label>
         <br></br>
         <input type="radio" name="brand" id="brand4" />
-        <label for="brand4">Fresho</label>
+        <label htmlFor="brand4">Fresho</label>
         <br></br>
         <input type="radio" name="brand" id="brand5" />
-        <label for="brand5">Organic</label>
+        <label htmlFor="brand5">Organic</label>
         <br></br>
         <input type="radio" name="brand" id="brand6" />
-        <label for="brand6">Supa Corn</label>
+        <label htmlFor="brand6">Supa Corn</label>
         <br></br>
         <input type="radio" name="brand" id="brand7" />
-        <label for="brand7">SV Agri Carisma</label>
+        <label htmlFor="brand7">SV Agri Carisma</label>
         <br></br>
         <input type="radio" name="brand" id="brand8" />
-        <label for="brand8">Tadaa</label>
+        <label htmlFor="brand8">Tadaa</label>
       </div>
     </div>
   );

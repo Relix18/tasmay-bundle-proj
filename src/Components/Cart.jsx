@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Cart.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAsync, deleteAsync, updateAsync } from "../redux/cart/cartSlice";
-import { Navigate } from "react-router-dom";
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.items);
