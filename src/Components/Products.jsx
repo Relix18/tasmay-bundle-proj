@@ -1,4 +1,3 @@
-import React from "react";
 import Filter from "./Filter";
 import ProductList from "./ProductList";
 import "../styles/Products.scss";
@@ -9,7 +8,7 @@ const Products = () => {
       <div>
         <Filter />
       </div>
-      <div>
+      <div className="card">
         <ProductList />
       </div>
     </div>
