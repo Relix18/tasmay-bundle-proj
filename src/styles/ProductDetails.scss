@@ -1,0 +1,157 @@
+#ProductDetails {
+  width: 85%;
+  height: 100vh;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .carousel-root {
+    width: 95%;
+    margin-top: 3rem !important;
+    height: 20rem;
+
+    .carousel-slider {
+      background-color: gray;
+      border-radius: 15px;
+      margin: auto;
+    }
+
+    .slider-wrapper {
+      width: 100%;
+    }
+    img {
+      aspect-ratio: 3/2;
+      object-fit: contain;
+    }
+  }
+  .details {
+    margin: 3rem 0 0 3rem;
+
+    .title {
+      line-height: 50px;
+    }
+
+    h3 {
+      font-weight: 400;
+      span {
+        background-color: rgb(59, 197, 59);
+        border-radius: 15px;
+        padding: 2px 5px;
+        color: white;
+        font-size: 15px;
+        margin-left: 10px;
+      }
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      span {
+        text-decoration: line-through;
+        font-weight: 400;
+        margin-left: 1rem;
+        font-size: 1.2rem;
+      }
+    }
+    .product-price {
+      margin: 1rem 0;
+      h4 {
+        color: red;
+        font-weight: 500;
+      }
+    }
+
+    .prod-desc {
+      h1 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .pin-check {
+      display: flex;
+      margin-top: 1.5rem;
+      font-weight: 500;
+
+      .pin-input {
+        position: relative;
+        border-bottom: 2px solid orange;
+        margin-left: 2rem;
+        width: 180px;
+        padding: 0 1rem;
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        input {
+          height: 20px;
+          background-color: #f5f5f5;
+          border: none;
+          outline: none;
+        }
+        button {
+          position: absolute;
+          top: 15%;
+          right: 2%;
+          font-weight: 600;
+          border: none;
+          color: orange;
+        }
+      }
+      .pin-res {
+        margin-left: 1rem;
+        font-size: 12px;
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+    }
+
+    .flex-button {
+      display: flex;
+      margin-top: 1.2rem;
+      width: 100%;
+      .quantityBtn {
+        display: flex;
+        align-items: center;
+
+        p {
+          margin: 0 1rem 0 0.5rem;
+          width: 10px;
+          align-items: center;
+        }
+
+        button {
+          width: 2rem;
+          height: 2rem;
+          border: 0.1rem solid gray;
+          font-size: 1.2rem;
+          border-radius: 50%;
+        }
+      }
+      .main-button {
+        display: flex;
+        .buyBtn {
+          margin-left: 0.5rem;
+          background-color: orange;
+        }
+        button {
+          margin-left: 2rem;
+          cursor: pointer;
+          width: 12rem;
+          height: 2.5rem;
+          color: white;
+          font-weight: 400;
+          font-size: 1rem;
+          text-transform: uppercase;
+          border: none;
+          background-color: red;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+}

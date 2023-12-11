@@ -8,13 +8,26 @@ import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+export const zipCodes = [
+  "229206",
+  "229309",
+  "229308",
+  "229001",
+  "229301",
+  "229231",
+];
+
 const Header = () => {
-  const zipCodes = ["229206", "229309", "229308", "229001", "229301", "229231"];
   const [search, setSearch] = useState("");
   const [zipCodeToggle, setZipCodeToggle] = useState(false);
   const [zipSearch, setZipSearch] = useState("");
   const [zipRes, setZipRes] = useState("");
   const clearSearch = useRef("");
+
+  const p = document.querySelector(".pin-res");
+
+  zipRes === "Available" ? p.classList.add("green") : "";
+  zipRes === "Not Available" ? p.classList.remove("green") : "";
 
   const { items } = useSelector((state) => state.cart);
 
@@ -81,26 +94,31 @@ const Header = () => {
               <input
                 type="number"
                 className="checkInput"
-                onChange={(e) => setZipSearch(e.target.value)}
+                onChange={(e) => setZipSearch(e.target.value.substring(0, 6))}
                 value={zipSearch}
                 placeholder="Check Location"
               />
-              <p style={{ color: "red", fontSize: "12px", marginLeft: "10px" }}>
+              <p
+                className="pin-res"
+                style={{ fontSize: "12px", marginLeft: "10px" }}
+              >
                 {zipRes}
               </p>
-
-              <button className="checkBtn" onClick={() => zipCheckHandler()}>
-                Check
-              </button>
-              <button
-                className="close"
-                onClick={() => {
-                  setZipCodeToggle(false);
-                  setZipSearch("");
-                }}
-              >
-                Cancel
-              </button>
+              <div className="butt">
+                <button className="checkBtn" onClick={() => zipCheckHandler()}>
+                  Check
+                </button>
+                <button
+                  className="close"
+                  onClick={() => {
+                    setZipCodeToggle(false);
+                    setZipSearch("");
+                    setZipRes("");
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           )}
           <div className="otherIcon">

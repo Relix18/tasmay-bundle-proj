@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import "../styles/Cart.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { cartAsync, deleteAsync, updateAsync } from "../redux/cart/cartSlice";
+import {
+  cartAsync,
+  deleteAsync,
+  selectItems,
+  updateAsync,
+} from "../redux/cart/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const items = useSelector((state) => state.cart.items);
+  const items = useSelector(selectItems);
 
   const sum = items.reduce((acc, item) => item.price * item.qty + acc, 0);
   const subTotal = sum;
@@ -47,15 +53,15 @@ const Cart = () => {
               <tbody>
                 <tr>
                   <td>Sub Total</td>
-                  <td>${subTotal}</td>
+                  <td className="value">${subTotal}</td>
                 </tr>
                 <tr>
-                  <td>tax</td>
-                  <td>${tax}</td>
+                  <td>Tax</td>
+                  <td className="value">${tax}</td>
                 </tr>
                 <tr>
                   <td>Delivery Charges</td>
-                  <td>${shipping}</td>
+                  <td className="value">${shipping}</td>
                 </tr>
               </tbody>
             </table>
@@ -65,12 +71,14 @@ const Cart = () => {
               <thead>
                 <tr>
                   <td>Total</td>
-                  <td>${total}</td>
+                  <td className="value">${total}</td>
                 </tr>
               </thead>
             </table>
           </div>
-          <button>Place Order</button>
+          <Link to={"/checkout"}>
+            <button>Checkout</button>
+          </Link>
         </div>
       </div>
     </>
@@ -94,7 +102,7 @@ const Card = ({ thumbnail, title, price, brand, id, qty }) => {
       updateAsync({
         id,
         change: {
-          qty: quantity > 1 ? quantity - 1 : "",
+          qty: quantity > 1 ? quantity - 1 : 1,
         },
       })
     );

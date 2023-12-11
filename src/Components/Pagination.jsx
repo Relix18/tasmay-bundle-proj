@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Pagination.scss";
+import { productStatus } from "../redux/product/productSlice";
+import { useSelector } from "react-redux";
 
 const Pagination = ({
   totalPosts,
@@ -12,6 +14,13 @@ const Pagination = ({
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
     pages.push(i);
   }
+  useEffect(() => {
+    pages;
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [pages]);
 
   const isPrev = currentPage > 1;
   const isNext = currentPage < pages.length;

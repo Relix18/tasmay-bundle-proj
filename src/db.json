@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "iPhone 9",
-      "description": "An apple mobile which is nothing like apple",
+      "description": "Lorem Ipsum is simply dummy text of the printing. The industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book lorem An apple mobile which is nothing like apple",
       "price": 549,
       "discountPercentage": 12.96,
       "rating": 4.69,
@@ -1805,7 +1805,7 @@
     {
       "id": 99,
       "title": "American Vintage Wood Pendant Light",
-      "description": "American Vintage Wood Pendant Light Farmhouse Antique Hanging Lamp Lampara Colgante",
+      "description": "lorem American Vintage Wood Pendant Light Farmhouse Antique Hanging Lamp Lampara Colgante",
       "price": 46,
       "discountPercentage": 8.84,
       "rating": 4.32,
@@ -1840,13 +1840,82 @@
       ]
     }
   ],
+  "brands": [
+    {
+      "value": "bb Combo",
+      "label": "bb Combo",
+      "checked": false
+    },
+    {
+      "value": "BB Royal",
+      "label": "BB Royal",
+      "checked": false
+    },
+    {
+      "value": "Farmogo",
+      "label": "Farmogo",
+      "checked": false
+    },
+    {
+      "value": "Fresho",
+      "label": "Fresho",
+      "checked": false
+    },
+    {
+      "value": "Organic",
+      "label": "Organic",
+      "checked": false
+    },
+    {
+      "value": "Supa Corn",
+      "label": "Supa Corn",
+      "checked": false
+    },
+    {
+      "value": "SV Agri Carisma",
+      "label": "SV Agri Carisma",
+      "checked": false
+    },
+    {
+      "value": "Tadaa",
+      "label": "Tadaa",
+      "checked": false
+    }
+  ],
+  "categories": [
+    {
+      "value": "Almonds / Badam",
+      "label": "Almonds / Badam",
+      "checked": false
+    },
+    {
+      "value": "Basmati Rice",
+      "label": "Basmati Rice",
+      "checked": false
+    },
+    {
+      "value": "Bathing Bars & Soaps",
+      "label": "Bathing Bars & Soaps",
+      "checked": false
+    },
+    {
+      "value": "Blended Masalas",
+      "label": "Blended Masalas",
+      "checked": false
+    },
+    {
+      "value": "Body Lotion & Cream",
+      "label": "Body Lotion & Cream",
+      "checked": false
+    }
+  ],
   "cart": [
     {
-      "id": 1,
-      "title": "iPhone 9",
-      "brand": "Apple",
-      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-      "price": 549,
+      "id": 4,
+      "title": "OPPOF19",
+      "brand": "OPPO",
+      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+      "price": 280,
       "qty": 1
     }
   ]

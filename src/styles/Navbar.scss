@@ -18,23 +18,24 @@
 
       .checkOption {
         position: absolute;
-        right: 25%;
-        top: 1%;
+        right: 24.2%;
+        top: 10%;
         background-color: white;
         border-radius: 5px;
         z-index: 5;
         height: 7.5rem;
         flex-direction: column;
         border: 2px solid rgb(247, 154, 14);
-        animation: animate 0.2s ease-in-out;
+        animation: animate 0.3s;
+        overflow: hidden;
       }
 
       @keyframes animate {
         from {
-          scale: 0;
+          height: 0;
         }
         to {
-          scale: 1;
+          height: 7.5rem;
         }
       }
 
@@ -45,6 +46,19 @@
         margin: 5px;
         padding: 12px;
         padding-left: 25px;
+      }
+
+      .butt {
+        position: absolute;
+        bottom: 8%;
+      }
+      .pin-res {
+        color: red;
+        font-size: 12px;
+        margin-left: 10px;
+      }
+      .green {
+        color: green;
       }
 
       .checkOption button {

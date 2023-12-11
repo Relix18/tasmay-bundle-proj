@@ -128,6 +128,9 @@
     line-height: 1.8;
     font-weight: 500;
   }
+  .value {
+    text-align: right;
+  }
 
   table {
     border-collapse: collapse;
@@ -149,6 +152,7 @@
   button {
     position: absolute;
     text-transform: uppercase;
+    cursor: pointer;
     background-color: orange;
     color: white;
     border: none;

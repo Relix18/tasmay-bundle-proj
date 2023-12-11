@@ -10,7 +10,8 @@ const ShowNavbar = ({ children }) => {
     if (
       location.pathname === "/login" ||
       location.pathname === "/signup" ||
-      location.pathname === "/forget-password"
+      location.pathname === "/forget-password" ||
+      location.pathname === "/checkout"
     ) {
       setShowNavbar(false);
     } else {
