@@ -9,11 +9,11 @@ import {
   productByCategoryAsync,
   productStatus,
   selectAllProducts,
-  selectProductById,
 } from "../redux/product/productSlice";
 import { addAsync, cartAsync, selectItems } from "../redux/cart/cartSlice";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { Rings } from "react-loader-spinner";
 
 const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,7 +48,18 @@ const ProductList = () => {
   return (
     <>
       {status === "loading" ? (
-        <div>Loading...</div>
+        <div id="loader">
+          <Rings
+            height="180"
+            width="180"
+            color="orange"
+            radius="6"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="rings-loading"
+          />
+        </div>
       ) : (
         <div id="productList">
           {products.map((item) => (

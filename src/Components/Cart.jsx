@@ -7,7 +7,8 @@ import {
   selectItems,
   updateAsync,
 } from "../redux/cart/cartSlice";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const items = useSelector(selectItems);
@@ -17,11 +18,20 @@ const Cart = () => {
   const shipping = subTotal > 500 ? 0 : 50;
   const tax = +(subTotal * 0.18).toFixed();
   const total = subTotal + tax + shipping;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(cartAsync());
-  }, []);
-  const dispatch = useDispatch();
+  }, [dispatch]);
+
+  const checkoutHandler = () => {
+    if (items.length <= 0) {
+      toast.error("Please add items to checkout");
+    } else {
+      navigate("/checkout");
+    }
+  };
 
   return (
     <>
@@ -76,9 +86,8 @@ const Cart = () => {
               </thead>
             </table>
           </div>
-          <Link to={"/checkout"}>
-            <button>Checkout</button>
-          </Link>
+
+          <button onClick={() => checkoutHandler()}>Checkout</button>
         </div>
       </div>
     </>
@@ -110,6 +119,7 @@ const Card = ({ thumbnail, title, price, brand, id, qty }) => {
 
   const deleteHandler = (id) => {
     dispatch(deleteAsync(id));
+    toast.success("Item Removed");
   };
 
   return (

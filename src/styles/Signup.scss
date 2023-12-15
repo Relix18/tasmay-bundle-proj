@@ -41,7 +41,7 @@
       .form {
         display: flex;
         flex-direction: column;
-        margin: 5rem auto;
+        margin: 2rem auto;
         justify-content: center;
         width: 80%;
 
@@ -51,20 +51,11 @@
           font-weight: 600;
         }
         .inputBox {
-          position: relative;
-
-          input:focus ~ label,
-          input:valid ~ label {
-            color: black;
-            font-size: 0.9rem;
-            transform: translateY(-20px);
-            text-transform: capitalize;
-          }
-
+          margin-top: 1rem;
           input {
             width: 100%;
             border: none;
-            margin-top: 1rem;
+
             border-bottom: 2px solid black;
             height: 2rem;
             outline: none;
@@ -72,12 +63,16 @@
           }
           label {
             font-size: 1rem;
-            position: absolute;
-            top: 1.5rem;
-            left: 0;
-            color: rgba(0, 0, 0, 0.473);
-            pointer-events: none;
+            color: black;
+            font-size: 0.9rem;
+            text-transform: capitalize;
+
             transition: 0.2s;
+          }
+          .error {
+            color: red;
+            margin-bottom: -0.5rem;
+            font-size: 0.8rem;
           }
         }
 
@@ -94,7 +89,7 @@
 
         button {
           display: flex;
-          margin-top: 2rem !important;
+          margin-top: 1.5rem !important;
           margin: auto;
           justify-content: center;
           width: 8rem;
@@ -109,7 +104,7 @@
       }
       .login {
         display: flex;
-        margin-top: -4rem !important;
+        margin-top: -1rem !important;
         margin: auto;
         justify-content: center;
         color: rgb(224, 149, 8);

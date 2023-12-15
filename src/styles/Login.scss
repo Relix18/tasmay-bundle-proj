@@ -44,7 +44,7 @@
       .form {
         display: flex;
         flex-direction: column;
-        margin: 5rem auto;
+        margin: 3rem auto;
         justify-content: center;
         width: 80%;
 
@@ -54,20 +54,10 @@
           font-weight: 600;
         }
         .inputBox {
-          position: relative;
-
-          input:focus ~ label,
-          input:valid ~ label {
-            color: black;
-            font-size: 0.9rem;
-            transform: translateY(-20px);
-            text-transform: capitalize;
-          }
-
+          margin-top: 1rem;
           input {
             width: 100%;
             border: none;
-            margin-top: 1rem;
             border-bottom: 2px solid black;
             height: 2rem;
             outline: none;
@@ -75,12 +65,16 @@
           }
           label {
             font-size: 1rem;
-            position: absolute;
-            top: 1.5rem;
-            left: 0;
-            color: rgba(0, 0, 0, 0.473);
-            pointer-events: none;
-            transition: 0.2s;
+            color: black;
+            font-size: 0.9rem;
+            text-transform: capitalize;
+          }
+          .email-err {
+            margin-bottom: -0.5rem;
+          }
+          .error {
+            color: red;
+            font-size: 0.9rem;
           }
         }
 
@@ -112,7 +106,7 @@
       }
       .signup {
         display: flex;
-        margin-top: -4rem !important;
+        margin-top: -2rem !important;
         margin: auto;
         justify-content: center;
         text-decoration: none;

@@ -1,3 +1,9 @@
+#loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #productList {
   display: flex;
   margin: 0 0 1rem 2rem;
@@ -10,7 +16,7 @@
     margin: 0rem 0.5rem 1rem 0.5rem;
     height: 20rem;
     padding: 0.5rem 1rem 0rem 1rem;
-    border: 2px solid orange;
+    border: 2px solid rgb(247, 154, 14);
     flex: auto;
     background-color: white;
     overflow: hidden;
@@ -56,13 +62,15 @@
 
     button {
       position: absolute;
-      background-color: orange;
+      background-color: rgb(247, 154, 14);
       left: 0;
       bottom: 0;
       border: none;
       color: white;
       width: 100%;
       cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
       height: 2.3rem;
       flex: auto;
     }

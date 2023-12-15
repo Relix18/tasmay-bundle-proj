@@ -96,7 +96,7 @@ const Header = () => {
                 className="checkInput"
                 onChange={(e) => setZipSearch(e.target.value.substring(0, 6))}
                 value={zipSearch}
-                placeholder="Check Location"
+                placeholder="Enter Pincode"
               />
               <p
                 className="pin-res"

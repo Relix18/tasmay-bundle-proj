@@ -9,7 +9,6 @@ export function addItem(item) {
 }
 
 export function updateItem(id, itemUpdate) {
-  console.log(id, itemUpdate);
   return axios.patch(`http://localhost:8080/cart/${id}`, itemUpdate);
 }
 
