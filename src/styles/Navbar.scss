@@ -1,5 +1,5 @@
 #Navbar {
-  border-top: 8px solid rgb(247, 154, 14);
+  border-top: 8px solid #e77728;
   height: 7.5rem;
   max-width: 100%;
   margin: auto;
@@ -25,7 +25,7 @@
         z-index: 5;
         height: 7.5rem;
         flex-direction: column;
-        border: 2px solid rgb(247, 154, 14);
+        border: 2px solid #e77728;
         animation: animate 0.3s;
         overflow: hidden;
       }
@@ -67,7 +67,7 @@
         width: 4.5rem;
         margin-left: 30px;
         flex-direction: column;
-        border: 2px solid rgb(247, 154, 14);
+        border: 2px solid #e77728;
         color: black;
         padding: 10px;
         outline: none;
@@ -103,9 +103,10 @@
       .searchBox {
         width: 100%;
         display: flex;
-        padding: 12px;
+        padding: 10px;
         padding-left: 25px;
         border-radius: 5px;
+        font-size: 1rem;
         outline: none;
         border: 1px solid rgba(0, 0, 0, 0.363);
       }
@@ -133,7 +134,7 @@
       }
 
       .searchIcon svg:hover {
-        color: rgb(247, 154, 14);
+        color: #e77728;
       }
 
       .location {
@@ -160,7 +161,7 @@
 
       .location:hover,
       .locationBtn:hover {
-        color: rgb(247, 154, 14);
+        color: #e77728;
       }
 
       .locationIcon {
@@ -188,7 +189,7 @@
             height: 16px;
             top: 5px;
             right: 5px;
-            background-color: rgb(247, 154, 14);
+            background-color: #e77728;
             color: white;
             border-radius: 50%;
           }
@@ -204,7 +205,7 @@
       }
 
       .otherIcon svg:hover {
-        color: rgb(247, 154, 14);
+        color: #e77728;
       }
     }
 
@@ -223,7 +224,7 @@
 
       select {
         width: 20%;
-        background-color: rgb(247, 154, 14);
+        background-color: #e77728;
         padding-right: 15px;
         color: white;
         height: 35px;
@@ -257,13 +258,13 @@
       }
 
       button:hover {
-        color: rgb(247, 154, 14);
+        color: #e77728;
       }
 
       .contactBtn {
         background-color: transparent;
         font-size: 15px;
-        border: 1px solid rgb(247, 154, 14);
+        border: 1px solid #e77728;
         padding: 0px 5px 0px 5px;
         border-radius: 5px;
         width: 10%;

@@ -25,9 +25,25 @@ function App() {
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/forget-password" element={<ForgetPassword />} />
 
-        <Route exact path="/cart" element={<Cart />} />
+        <Route
+          exact
+          path="/cart"
+          element={
+            <Protected>
+              <Cart />
+            </Protected>
+          }
+        />
 
-        <Route exact path="/checkout" element={<Checkout />} />
+        <Route
+          exact
+          path="/checkout"
+          element={
+            <Protected>
+              <Checkout />
+            </Protected>
+          }
+        />
       </Routes>
       <Toaster />
     </Router>

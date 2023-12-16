@@ -2,28 +2,26 @@ import { useEffect, useState } from "react";
 import "../styles/Cart.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  cartAsync,
   deleteAsync,
+  itemsByUserIdAsync,
   selectItems,
   updateAsync,
 } from "../redux/cart/cartSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { selectLoggedInUser } from "../redux/auth/authSlice";
 
 const Cart = () => {
   const items = useSelector(selectItems);
+  const dispatch = useDispatch();
+  const user = useSelector(selectLoggedInUser);
 
   const sum = items.reduce((acc, item) => item.price * item.qty + acc, 0);
   const subTotal = sum;
   const shipping = subTotal > 500 ? 0 : 50;
   const tax = +(subTotal * 0.18).toFixed();
   const total = subTotal + tax + shipping;
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(cartAsync());
-  }, [dispatch]);
 
   const checkoutHandler = () => {
     if (items.length <= 0) {
@@ -32,6 +30,12 @@ const Cart = () => {
       navigate("/checkout");
     }
   };
+
+  useEffect(() => {
+    {
+      user && dispatch(itemsByUserIdAsync(user.id));
+    }
+  }, [dispatch, user]);
 
   return (
     <>

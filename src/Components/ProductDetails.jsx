@@ -3,15 +3,19 @@ import "../styles/ProductDetails.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   productByIdAsync,
-  selectAllProducts,
   selectProductById,
 } from "../redux/product/productSlice";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { zipCodes } from "./Navbar";
-import { addAsync, cartAsync, selectItems } from "../redux/cart/cartSlice";
+import {
+  addAsync,
+  itemsByUserIdAsync,
+  selectItems,
+} from "../redux/cart/cartSlice";
 import toast from "react-hot-toast";
+import { selectLoggedInUser } from "../redux/auth/authSlice";
 
 const ProductDetails = () => {
   const [zipSearch, setZipSearch] = useState("");
@@ -20,15 +24,18 @@ const ProductDetails = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
+  const user = useSelector(selectLoggedInUser);
 
   useEffect(() => {
     dispatch(productByIdAsync(params.id));
-    dispatch(cartAsync());
+    {
+      user && dispatch(itemsByUserIdAsync(user.id));
+    }
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }, []);
+  }, [dispatch, params.id, user]);
 
   const p = document.querySelector(".pin-res");
 
@@ -44,11 +51,22 @@ const ProductDetails = () => {
   };
 
   const addToCartHandler = (product) => {
-    if (items.findIndex((i) => i.id === product.id) < 0) {
-      dispatch(addAsync(product));
-      toast.success("Added To Cart");
+    if (user) {
+      if (items.findIndex((i) => i.productId === product.id) < 0) {
+        const newItem = {
+          ...product,
+          productId: product.id,
+          qty: 1,
+          user: user.id,
+        };
+        delete newItem["id"];
+        dispatch(addAsync(newItem));
+        toast.success("Added To Cart");
+      } else {
+        toast.error("Item Already Added");
+      }
     } else {
-      toast.error("Item Already Added");
+      toast.error("Please Login First");
     }
   };
 
@@ -66,18 +84,11 @@ const ProductDetails = () => {
               showIndicators={true}
               showStatus={false}
             >
-              <div>
-                <img src={product.images[0]} alt="banner" />
-              </div>
-              <div>
-                <img src={product.images[1]} alt="banner" />
-              </div>
-              <div>
-                <img src={product.images[2]} alt="banner" />
-              </div>
-              <div>
-                <img src={product.images[3]} alt="banner" />
-              </div>
+              {product.images.map((img, i) => (
+                <div key={i}>
+                  <img src={img} alt="banner" />
+                </div>
+              ))}
             </Carousel>
           </div>
           <div className="details">

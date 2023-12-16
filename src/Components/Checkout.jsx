@@ -1,7 +1,7 @@
 import "../styles/Checkout.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  cartAsync,
+  itemsByUserIdAsync,
   deleteAsync,
   selectItems,
   updateAsync,
@@ -138,7 +138,7 @@ const Checkout = () => {
         </div>
         <div className="payment-option">
           <div>
-            <input type="radio" name="payment" id="payment1" />
+            <input type="radio" name="payment" id="payment1" defaultChecked />
             <label htmlFor="payment1">Cash Payment</label>
           </div>
           <div>

@@ -1,26 +1,32 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchItems, addItem, deleteItem, updateItem } from "./cartAPI";
+import {
+  fetchItems,
+  addItem,
+  deleteItem,
+  updateItem,
+  fetchItemsByUser,
+} from "./cartAPI";
 
 const initialState = {
   items: [],
   status: "idle",
 };
 
-export const cartAsync = createAsyncThunk("cart/fetchItems", async () => {
-  const response = await fetchItems();
+export const cartAsync = createAsyncThunk("cart/fetchItems", async (item) => {
+  const response = await fetchItems(item);
   return response.data;
 });
 
+export const itemsByUserIdAsync = createAsyncThunk(
+  "cart/fetchItemsByUser",
+  async (userId) => {
+    const response = await fetchItemsByUser(userId);
+    return response.data;
+  }
+);
+
 export const addAsync = createAsyncThunk("cart/addItems", async (item) => {
-  const { id, title, brand, thumbnail, price } = item;
-  const response = await addItem({
-    id,
-    title,
-    brand,
-    thumbnail,
-    price,
-    qty: 1,
-  });
+  const response = await addItem(item);
   return response.data;
 });
 
@@ -32,7 +38,6 @@ export const updateAsync = createAsyncThunk(
   "cart/updateItem",
   async ({ id, change }) => {
     const response = await updateItem(id, change);
-    console.log(id, change);
     return response.data;
   }
 );
@@ -43,9 +48,22 @@ export const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(cartAsync.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(cartAsync.fulfilled, (state, action) => {
         state.status = "idle";
+        state.items.push(action.payload);
+      })
+      .addCase(itemsByUserIdAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(itemsByUserIdAsync.fulfilled, (state, action) => {
+        state.status = "idle";
         state.items = action.payload;
+      })
+      .addCase(addAsync.pending, (state) => {
+        state.status = "loading";
       })
       .addCase(addAsync.fulfilled, (state, action) => {
         state.status = "idle";

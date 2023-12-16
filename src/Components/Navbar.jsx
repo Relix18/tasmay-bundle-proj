@@ -6,7 +6,9 @@ import { IoIosSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectItems } from "../redux/cart/cartSlice";
+import { productBySearchAsync } from "../redux/product/productSlice";
 
 export const zipCodes = [
   "229206",
@@ -23,13 +25,14 @@ const Header = () => {
   const [zipSearch, setZipSearch] = useState("");
   const [zipRes, setZipRes] = useState("");
   const clearSearch = useRef("");
+  const dispatch = useDispatch();
 
   const p = document.querySelector(".pin-res");
 
   zipRes === "Available" ? p.classList.add("green") : "";
   zipRes === "Not Available" ? p.classList.remove("green") : "";
 
-  const { items } = useSelector((state) => state.cart);
+  const items = useSelector(selectItems);
 
   const zipCodeToggleHandler = () => {
     if (zipCodeToggle === true) {
@@ -51,9 +54,8 @@ const Header = () => {
     setSearch(e.target.value);
   };
   const searchButtonHandle = () => {
+    dispatch(productBySearchAsync(search));
     console.log(search);
-    setSearch("");
-    clearSearch.current.value = "";
   };
 
   return (
@@ -73,7 +75,7 @@ const Header = () => {
                 searchHandle(e);
               }}
             />
-            <span className="searchIcon" onClick={() => searchButtonHandle()}>
+            <span className="searchIcon" onClick={(e) => searchButtonHandle(e)}>
               <IoIosSearch />
             </span>
           </div>
@@ -133,7 +135,7 @@ const Header = () => {
         </div>
         <div className="buttons">
           <div className="emptyDiv"></div>
-          <select>
+          <select onChange={(e) => console.log(e.target.value)}>
             <option>Shop by category</option>
             <option>Almonds/Badam</option>
             <option>Basmati Rice</option>

@@ -5,15 +5,20 @@ import toast from "react-hot-toast";
 import Pagination from "./Pagination.jsx";
 import {
   productAsync,
-  productByBrandAsync,
-  productByCategoryAsync,
+  productsBrandAsync,
+  productsCategoryAsync,
   productStatus,
   selectAllProducts,
 } from "../redux/product/productSlice";
-import { addAsync, cartAsync, selectItems } from "../redux/cart/cartSlice";
+import {
+  addAsync,
+  itemsByUserIdAsync,
+  selectItems,
+} from "../redux/cart/cartSlice";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { Rings } from "react-loader-spinner";
+import { selectLoggedInUser } from "../redux/auth/authSlice.js";
 
 const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,24 +29,33 @@ const ProductList = () => {
   const data = useSelector(selectAllProducts);
   const status = useSelector(productStatus);
   const items = useSelector(selectItems);
+  const user = useSelector(selectLoggedInUser);
 
   useEffect(() => {
-    dispatch(productByBrandAsync());
-    dispatch(productByCategoryAsync());
-  }, []);
+    dispatch(productsBrandAsync());
+    dispatch(productsCategoryAsync());
+  }, [dispatch]);
   useEffect(() => {
     dispatch(productAsync());
-    dispatch(cartAsync());
-  }, []);
+    {
+      user && dispatch(itemsByUserIdAsync(user.id));
+    }
+  }, [dispatch, user]);
 
   const products = data.slice(firstIndex, lastIndex);
 
   const addToCartHandler = (item) => {
-    if (items.findIndex((i) => i.id === item.id) < 0) {
-      dispatch(addAsync(item));
-      toast.success("Added To Cart");
+    if (user) {
+      if (items.findIndex((i) => i.productId === item.id) < 0) {
+        const newItem = { ...item, productId: item.id, qty: 1, user: user.id };
+        delete newItem["id"];
+        dispatch(addAsync(newItem));
+        toast.success("Added To Cart");
+      } else {
+        toast.error("Item Already Added");
+      }
     } else {
-      toast.error("Item Already Added");
+      toast.error("Please Login First");
     }
   };
 
@@ -78,6 +92,7 @@ const ProductList = () => {
           ))}
         </div>
       )}
+
       {status === "loading" ? (
         <></>
       ) : (

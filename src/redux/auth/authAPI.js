@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function createUser(user) {
-  return axios.post("http://localhost:8080/users", user);
+  return axios.post("http://localhost:8080/user", user);
 }
 
 export function checkUser(loginInfo) {

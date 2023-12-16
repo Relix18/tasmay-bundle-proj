@@ -1,37 +1,75 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Filter.scss";
-import { selectBrands, selectCategories } from "../redux/product/productSlice";
+import {
+  productByFilterAsync,
+  selectBrands,
+  selectCategories,
+} from "../redux/product/productSlice";
+import { useEffect, useState } from "react";
 
 const Filter = () => {
-  const brand = useSelector(selectBrands);
+  const dispatch = useDispatch();
+  const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
+  const [filter, setFilter] = useState({});
+
+  const filters = [
+    {
+      id: "category",
+      name: "Category",
+      options: categories,
+    },
+    {
+      id: "brand",
+      name: "Brands",
+      options: brands,
+    },
+  ];
+
+  const handleFilter = (e, section, option) => {
+    const newFilter = { ...filter };
+    if (e.target.checked) {
+      if (newFilter[section.id]) {
+        newFilter[section.id].push(option.value);
+      } else {
+        newFilter[section.id] = [option.value];
+      }
+    } else {
+      const index = newFilter[section.id].findIndex(
+        (value) => value === option.value
+      );
+      newFilter[section.id].splice(index, 1);
+    }
+    setFilter(newFilter);
+  };
+
+  useEffect(() => {
+    dispatch(productByFilterAsync(filter));
+  }, [dispatch, filter]);
 
   return (
     <div id="filter">
       <h2>Filters</h2>
-      <div className="availability option">
-        <p>Availability</p>
-        <input type="checkbox" name="available" id="available1" />
-        <label htmlFor="available1">Include Out of Stock</label>
-      </div>
-      <div className="categories option">
-        <p>Categories</p>
-        {categories.map((item, i) => (
-          <div key={i}>
-            <input type="checkbox" name="category" id={`category${i}`} />
-            <label htmlFor={`category${i}`}>{item.value}</label>
-          </div>
-        ))}
-      </div>
-      <div className="brands option">
-        <p>Brands</p>
-        {brand.map((item, i) => (
-          <div key={i}>
-            <input type="checkbox" name="brand" id={`brand${i}`} />
-            <label htmlFor={`brand${i}`}>{item.value}</label>
-          </div>
-        ))}
-      </div>
+      {filters.map((section) => (
+        <div className="filter option" key={section.id}>
+          <p>{section.name}</p>
+          {section.options.map((option, i) => (
+            <div key={i}>
+              <input
+                type="checkbox"
+                name={`${section.id}[]`}
+                value={option.value}
+                id={`filter-${section.id}-${i}`}
+                onChange={(e) => handleFilter(e, section, option)}
+              />
+
+              <label htmlFor={`filter-${section.id}-${i}`}>
+                {option.label}
+              </label>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
