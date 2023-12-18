@@ -18,33 +18,23 @@
 
       .checkOption {
         position: absolute;
-        right: 24.2%;
-        top: 10%;
+        right: 1%;
+        top: 45px;
         background-color: white;
         border-radius: 5px;
         z-index: 5;
         height: 7.5rem;
         flex-direction: column;
-        border: 2px solid #e77728;
-        animation: animate 0.3s;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
         overflow: hidden;
       }
 
-      @keyframes animate {
-        from {
-          height: 0;
-        }
-        to {
-          height: 7.5rem;
-        }
-      }
-
       .checkInput {
-        border: 1px solid gray;
+        border: none;
+        border-bottom: 2px solid rgb(163, 158, 158);
         outline: none;
-        border-radius: 5px;
         margin: 5px;
-        padding: 12px;
+        padding: 10px;
         padding-left: 25px;
       }
 
@@ -67,22 +57,29 @@
         width: 4.5rem;
         margin-left: 30px;
         flex-direction: column;
-        border: 2px solid #e77728;
+        background-color: white;
+        border: none;
         color: black;
         padding: 10px;
         outline: none;
+      }
+
+      .checkOption button:hover {
+        color: #e77728;
       }
 
       .close {
         cursor: pointer;
 
         border-radius: 5px;
-        background-color: rgba(255, 1, 1, 0.822);
+        background-color: white;
         border: none !important;
         margin-top: 4px;
         margin-left: 12rem;
         outline: none;
-        color: white !important;
+      }
+      .close:hover {
+        color: red !important;
       }
 
       .logo {
@@ -206,6 +203,35 @@
 
       .otherIcon svg:hover {
         color: #e77728;
+      }
+
+      .user {
+        display: flex;
+        position: absolute;
+        top: 70px;
+        right: 12%;
+        flex-direction: column;
+        width: 180px;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+
+        div {
+          height: 30px;
+          display: flex;
+          padding-left: 1rem;
+
+          a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.801);
+            margin: 0.4rem 0;
+          }
+        }
+        div:hover {
+          background: rgba(128, 128, 128, 0.233);
+        }
       }
     }
 

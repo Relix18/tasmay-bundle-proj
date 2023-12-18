@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import { zipCodes } from "./Navbar";
+import { zipCodes } from "./utils/common.jsx";
 import {
   addAsync,
   itemsByUserIdAsync,
