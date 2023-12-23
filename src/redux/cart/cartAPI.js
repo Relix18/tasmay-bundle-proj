@@ -19,3 +19,14 @@ export function updateItem(id, itemUpdate) {
 export function deleteItem(id) {
   return axios.delete(`http://localhost:8080/cart/${id}`);
 }
+
+export function resetCart(userId) {
+  return new Promise(async (resolve) => {
+    const response = await fetchItemsByUser(userId);
+    const items = response.data;
+    for (let item of items) {
+      await deleteItem(item.id);
+    }
+    resolve({ status: "success" });
+  });
+}

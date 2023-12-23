@@ -1,0 +1,176 @@
+#Profile {
+  width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  h1 {
+    margin-bottom: 1rem;
+  }
+  .user {
+    filter: drop-shadow(0 0 0.2rem rgb(0, 0, 0));
+    margin-bottom: 1rem;
+    background-color: white;
+    padding: 1rem;
+    padding-left: 2rem;
+
+    .userId {
+      margin-bottom: 4rem;
+      .userName {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .email {
+        font-size: 1.1rem;
+        color: red;
+      }
+
+      button {
+        width: 9rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+        border: none;
+        background-color: #e77728;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+    h3 {
+      color: rgba(0, 0, 0, 0.664);
+    }
+  }
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    .form {
+      margin: 1rem 0;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid rgba(128, 128, 128, 0.24);
+    }
+    input,
+    select {
+      width: 25rem;
+      height: 1.5rem;
+      margin: 0.5rem 0 1rem 0;
+      border: 1px solid#ccc4c4;
+      outline-color: #e77728;
+      padding: 0.3rem;
+      padding-left: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+    .sec-1 > input {
+      width: 60%;
+    }
+    .phone-input > input {
+      width: 40%;
+    }
+    .street-input > input {
+      width: 93%;
+    }
+    .col-input > input {
+      width: 80%;
+    }
+    .select > select {
+      width: 90%;
+      height: 2.2rem;
+
+      option {
+        max-width: 200px;
+      }
+    }
+    .main-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .btns {
+    display: flex;
+    align-self: flex-end;
+    gap: 0.5rem;
+  }
+  .add-btn {
+    width: 7rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #e77728;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .cancel-btn {
+    width: 7rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.438);
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+  .address {
+    display: flex;
+    margin-top: 0.5rem;
+    border: 2px solid rgba(128, 128, 128, 0.24);
+    padding: 0.8rem 0.2rem;
+    .row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0 1rem;
+
+      p {
+        color: rgba(0, 0, 0, 0.822);
+        font-weight: 500;
+      }
+      .col-1 {
+        display: flex;
+        flex-direction: column;
+
+        .name-p {
+          color: black;
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+      }
+      .col-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      .col-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        button {
+          cursor: pointer;
+          border: none;
+          background-color: transparent;
+          color: orange;
+          margin: 5px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

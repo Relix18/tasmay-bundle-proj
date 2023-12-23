@@ -15,8 +15,6 @@ export function checkUser(loginInfo) {
       );
       const data = response.data;
 
-      console.log(data);
-
       if (data.length) {
         if (password === data[0].password) {
           resolve({ data: data[0] });

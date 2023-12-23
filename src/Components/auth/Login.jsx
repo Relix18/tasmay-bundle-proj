@@ -43,6 +43,7 @@ const Login = () => {
                   checkUserAsync({
                     email: data.email,
                     password: data.password,
+                    addresses: [],
                   })
                 );
               })}

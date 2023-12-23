@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { Rings } from "react-loader-spinner";
+import { fetchLoggedInUserAsync } from "../redux/user/userSlice.js";
 import { selectLoggedInUser } from "../redux/auth/authSlice.js";
 
 const ProductList = () => {
@@ -37,8 +38,9 @@ const ProductList = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(productAsync());
-    {
-      user && dispatch(itemsByUserIdAsync(user.id));
+    if (user) {
+      dispatch(itemsByUserIdAsync(user.id));
+      dispatch(fetchLoggedInUserAsync(user.id));
     }
   }, [dispatch, user]);
 

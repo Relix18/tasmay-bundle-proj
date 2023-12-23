@@ -36,7 +36,8 @@
         padding-bottom: 2rem;
         border-bottom: 2px solid rgba(128, 128, 128, 0.24);
       }
-      .input {
+      input,
+      select {
         width: 25rem;
         height: 1.5rem;
         margin: 0.5rem 0 1rem 0;
@@ -47,19 +48,19 @@
         font-size: 1rem;
         border-radius: 5px;
       }
-      .sec-1 {
+      .sec-1 > input {
         width: 60%;
       }
-      .phone-input {
+      .phone-input > input {
         width: 40%;
       }
-      .street-input {
+      .street-input > input {
         width: 93%;
       }
-      .col-input {
+      .col-input > input {
         width: 80%;
       }
-      .state {
+      .select > select {
         width: 90%;
         height: 2.2rem;
 
@@ -167,7 +168,7 @@
               width: 1.8rem;
               height: 1.8rem;
               border-radius: 50%;
-              border: 2px solid rgb(128, 128, 128);
+              border: 1px solid rgb(128, 128, 128);
               display: flex;
               font-size: 1.2rem;
               align-items: center;

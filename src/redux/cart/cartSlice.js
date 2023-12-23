@@ -5,6 +5,7 @@ import {
   deleteItem,
   updateItem,
   fetchItemsByUser,
+  resetCart,
 } from "./cartAPI";
 
 const initialState = {
@@ -42,6 +43,14 @@ export const updateAsync = createAsyncThunk(
   }
 );
 
+export const resetCartAsync = createAsyncThunk(
+  "cart/resetCart",
+  async (userId) => {
+    const response = await resetCart(userId);
+    return response.data;
+  }
+);
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -68,6 +77,13 @@ export const cartSlice = createSlice({
       .addCase(addAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.items.push(action.payload);
+      })
+      .addCase(resetCartAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(resetCartAsync.fulfilled, (state) => {
+        state.status = "idle";
+        state.items = [];
       })
       .addCase(deleteAsync.fulfilled, (state, action) => {
         state.status = "idle";

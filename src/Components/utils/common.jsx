@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import { selectItems } from "../../redux/cart/cartSlice";
+
 export const zipCodes = [
   "229206",
   "229309",

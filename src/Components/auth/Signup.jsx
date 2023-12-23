@@ -4,8 +4,8 @@ import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectLoggedInUser,
   createUserAsync,
+  selectLoggedInUser,
 } from "../../redux/auth/authSlice";
 
 const Signup = () => {
@@ -40,6 +40,7 @@ const Signup = () => {
                   createUserAsync({
                     email: data.email,
                     password: data.password,
+                    name: "New User",
                   })
                 )
               )}

@@ -211,7 +211,7 @@
         top: 70px;
         right: 12%;
         flex-direction: column;
-        width: 180px;
+
         background-color: white;
         border-radius: 10px;
         overflow: hidden;
@@ -219,18 +219,20 @@
         z-index: 999;
 
         div {
-          height: 30px;
           display: flex;
-          padding-left: 1rem;
 
           a {
+            padding-left: 1rem;
             text-decoration: none;
+            width: 180px;
+            display: flex;
+            height: 30px;
             color: rgba(0, 0, 0, 0.801);
-            margin: 0.4rem 0;
+            align-items: center;
           }
-        }
-        div:hover {
-          background: rgba(128, 128, 128, 0.233);
+          a:hover {
+            background: rgba(128, 128, 128, 0.233);
+          }
         }
       }
     }

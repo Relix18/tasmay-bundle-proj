@@ -15,7 +15,7 @@ import {
   selectItems,
 } from "../redux/cart/cartSlice";
 import toast from "react-hot-toast";
-import { selectLoggedInUser } from "../redux/auth/authSlice";
+import { selectLoggedInUser } from "../redux/auth/authSlice.js";
 
 const ProductDetails = () => {
   const [zipSearch, setZipSearch] = useState("");

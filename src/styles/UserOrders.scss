@@ -1,0 +1,98 @@
+#Orders {
+  width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  .order {
+    filter: drop-shadow(0 0 0.2rem rgb(0, 0, 0));
+    margin-bottom: 1rem;
+    background-color: white;
+    padding: 1rem;
+    padding-left: 2rem;
+
+    .orderStatus {
+      color: rgb(226, 10, 10);
+      font-weight: 600;
+    }
+    .orderItems {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      .orderDetails {
+        display: flex;
+      }
+      .details {
+        margin-top: 1rem;
+
+        .brand {
+          color: rgba(0, 0, 0, 0.651);
+          font-weight: 600;
+        }
+
+        .qty {
+          margin-top: 2rem;
+          font-weight: 500;
+        }
+      }
+    }
+
+    img {
+      margin: 1rem 1rem 1rem 0rem;
+      width: 12rem;
+      height: 6rem;
+    }
+    .orderPrice {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+  .orderTotal {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+
+    p {
+      color: rgba(0, 0, 0, 0.712);
+      font-weight: 500;
+    }
+  }
+  .address {
+    display: flex;
+    margin-top: 1rem;
+    border: 2px solid rgba(128, 128, 128, 0.24);
+    padding: 0.8rem 0.2rem;
+    .row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0 1rem;
+
+      p {
+        color: rgba(0, 0, 0, 0.822);
+        font-weight: 500;
+      }
+      .col-1 {
+        display: flex;
+        flex-direction: column;
+
+        .name-p {
+          color: black;
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+      }
+      .col-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  }
+}

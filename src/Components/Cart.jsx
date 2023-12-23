@@ -15,12 +15,12 @@ const Cart = () => {
   const items = useSelector(selectItems);
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
-
   const sum = items.reduce((acc, item) => item.price * item.qty + acc, 0);
   const subTotal = sum;
-  const shipping = subTotal > 500 ? 0 : 50;
   const tax = +(subTotal * 0.18).toFixed();
+  const shipping = subTotal > 500 ? 0 : 50;
   const total = subTotal + tax + shipping;
+
   const navigate = useNavigate();
 
   const checkoutHandler = () => {

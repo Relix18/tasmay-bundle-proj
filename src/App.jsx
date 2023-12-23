@@ -1,26 +1,26 @@
 import { Toaster } from "react-hot-toast";
 import "./App.css";
-import Cart from "./Components/Cart";
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Components/auth/Login";
-import ShowNavbar from "./Components/auth/ShowNavbar";
 import Signup from "./Components/auth/Signup";
 import ForgetPassword from "./Components/auth/ForgetPassword";
-import ProductDetails from "./Components/ProductDetails";
 import Checkout from "./Components/Checkout";
 import Protected from "./Components/auth/Protected";
+import OrderSuccess from "./Components/OrderSuccess";
+import HomePage from "./pages/HomePage";
+import CartPage from "./pages/CartPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import UserOrdersPage from "./pages/UserOrdersPage";
+import PageNotFound from "./Components/PageNotFound";
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
   return (
     <Router>
-      <ShowNavbar>
-        <Navbar />
-      </ShowNavbar>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/product/:id" element={<ProductDetails />} />
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/*" element={<PageNotFound />} />
+        <Route exact path="/product/:id" element={<ProductDetailsPage />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/forget-password" element={<ForgetPassword />} />
@@ -30,7 +30,7 @@ function App() {
           path="/cart"
           element={
             <Protected>
-              <Cart />
+              <CartPage />
             </Protected>
           }
         />
@@ -44,6 +44,25 @@ function App() {
             </Protected>
           }
         />
+        <Route
+          exact
+          path="/orders"
+          element={
+            <Protected>
+              <UserOrdersPage />
+            </Protected>
+          }
+        />
+        <Route
+          exact
+          path="/profile"
+          element={
+            <Protected>
+              <UserProfilePage />
+            </Protected>
+          }
+        />
+        <Route exact path="/order-success/:id" element={<OrderSuccess />} />
       </Routes>
       <Toaster />
     </Router>

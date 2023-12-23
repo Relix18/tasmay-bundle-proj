@@ -3,141 +3,243 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteAsync, selectItems, updateAsync } from "../redux/cart/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { State, City } from "country-state-city";
+import { State } from "country-state-city";
 import toast from "react-hot-toast";
+import { createOrderAsync, selectOrderPlaced } from "../redux/order/orderSlice";
+import { useForm } from "react-hook-form";
+import { selectUserInfo, updateUserAsync } from "../redux/user/userSlice";
 const Checkout = () => {
   const [show, setShow] = useState(true);
-  const [city, setCity] = useState();
-
+  const [address, setAddress] = useState(null);
+  const [payment, setPayment] = useState("cash");
+  const dispatch = useDispatch();
   const items = useSelector(selectItems);
+  const order = useSelector(selectOrderPlaced);
   const navigate = useNavigate();
   const states = State.getStatesOfCountry("IN");
-  const cities = City.getCitiesOfState("IN", city);
   const sum = items.reduce((acc, item) => item.price * item.qty + acc, 0);
   const subTotal = sum;
   const shipping = subTotal > 500 ? 0 : 50;
   const tax = +(subTotal * 0.18).toFixed();
   const total = subTotal + tax + shipping;
+  const user = useSelector(selectUserInfo);
+  const totalItems = items.reduce((amount, item) => item.qty + amount, 0);
 
-  const handleChange = (e) => {
-    setCity(e.target.value);
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     if (items.length === 0) {
       navigate("/");
     }
-  }, [navigate, items]);
+    {
+      order && navigate(`/order-success/${order.id}`);
+    }
+  }, [navigate, items, order, user]);
+
+  const handleProceed = () => {
+    if (!address) {
+      toast.error("Please select an address");
+      return;
+    }
+    const order = {
+      items,
+      total,
+      user,
+      totalItems,
+      payment,
+      address,
+      status: "pending",
+    };
+    dispatch(createOrderAsync(order));
+  };
+
+  const handleAddress = (e) => {
+    setAddress(user.addresses[e.target.value]);
+  };
+
+  const handlePayment = (e) => {
+    setPayment(e.target.value);
+  };
 
   return (
     <div id="Checkout">
       <div className="address-section column">
         {show ? (
-          <button className="add-btn" onClick={() => setShow(false)}>
+          <button className="add-btn" onClick={() => setShow(!show)}>
             Add Address
           </button>
         ) : (
-          <div className="form-section">
-            <h1>Personal Information</h1>
-            <p>Use a permanent address where you can receive mail</p>
-            <div className="form">
-              <div className="name">
-                <label className="label">Full name</label>
-                <div className="name-input">
-                  <input type="text" className="input sec-1" />
-                </div>
-              </div>
-              <div className="email">
-                <label className="label">Email</label>
-                <div className="email-input">
-                  <input type="text" className="input sec-1" />
-                </div>
-              </div>
-              <div>
-                <label className="label">Phone</label>
+          <form
+            noValidate
+            onSubmit={handleSubmit((data) => {
+              dispatch(
+                updateUserAsync({
+                  ...user,
+                  addresses: [...user.addresses, data],
+                })
+              );
+              reset();
+            })}
+          >
+            <div className="form-section">
+              <h1>Personal Information</h1>
+              <p>Use a permanent address where you can receive mail</p>
+              <div className="form">
                 <div>
-                  <input type="number" className="input phone-input" />
+                  <label className="label" htmlFor="name">
+                    Full name
+                  </label>
+                  <div className="name-input sec-1">
+                    <input
+                      type="text"
+                      id="name"
+                      {...register("name", { required: "name is required" })}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label className="label">Street address</label>
                 <div>
-                  <input type="text" className="input street-input" />
+                  <label className="label" htmlFor="email">
+                    Email
+                  </label>
+                  <div className="email-input sec-1">
+                    <input
+                      id="email"
+                      type="text"
+                      {...register("email", { required: "email is required" })}
+                    />
+                  </div>
                 </div>
-              </div>
+                <div>
+                  <label className="label" htmlFor="phone">
+                    Phone
+                  </label>
+                  <div className="phone-input">
+                    <input
+                      type="number"
+                      id="phone"
+                      {...register("phone", {
+                        required: "phone number is required",
+                      })}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="label" htmlFor="street">
+                    Street address
+                  </label>
+                  <div className="street-input">
+                    <input
+                      type="text"
+                      id="street"
+                      {...register("street", {
+                        required: "street address is required",
+                      })}
+                    />
+                  </div>
+                </div>
 
-              <div className="main-col">
-                <div className="col">
-                  <label className="label">City</label>
-                  <div>
-                    <select className="input col-input state">
-                      <option>Select...</option>
-                      {cities.map((city, index) => (
-                        <option key={index} value={city.name}>
-                          {city.name}
-                        </option>
-                      ))}
-                    </select>
+                <div className="main-col">
+                  <div className="col">
+                    <label className="label">City</label>
+                    <div className="col-input">
+                      <input
+                        id="city"
+                        type="text"
+                        {...register("city", { required: true })}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="col">
-                  <label className="label">State</label>
-                  <div>
-                    <select
-                      className="input col-input state"
-                      onChange={(e) => {
-                        handleChange(e);
-                      }}
-                    >
-                      <option>Select...</option>
-                      {states.map((state, index) => (
-                        <option key={index} value={state.isoCode}>
-                          {state.name}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="col">
+                    <label className="label" htmlFor="state">
+                      State
+                    </label>
+                    <div className="select">
+                      <select
+                        id="state"
+                        {...register("state", { required: true })}
+                      >
+                        {states.map((state, index) => (
+                          <option key={index} value={state.name}>
+                            {state.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="col">
-                  <label className="label">ZIP / Postal Code</label>
-                  <div>
-                    <input type="number" className="input col-input" />
+                  <div className="col">
+                    <label className="label" htmlFor="zip">
+                      ZIP / Postal Code
+                    </label>
+                    <div className="col-input">
+                      <input
+                        type="number"
+                        id="zip"
+                        {...register("zip", { required: true })}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <button className="add-btn" type="submit">
+                Add Address
+              </button>
             </div>
-            <button className="add-btn" onClick={() => setShow(true)}>
-              Add Address
-            </button>
-          </div>
+          </form>
         )}
         <div className="address-container">
           <h1>Address</h1>
           <p>Choose the address you want to use</p>
-          <div className="address">
-            <input type="radio" name="address-radio" id="address-radio" />
-            <label htmlFor="address-radio"></label>
-            <div className="row">
-              <div className="col-1">
-                <p className="name-p">Relix</p>
-                <p className="address-p">123 Main Street</p>
-                <p className="pin-p">229001</p>
-              </div>
-              <div className="col-2">
-                <p className="phone-p">Phone: 434343</p>
-                <p className="city-p">Raebareli</p>
-                <p className="state-p">Uttar Pradesh</p>
+
+          {user.addresses.map((address, index) => (
+            <div className="address" key={index}>
+              <input
+                type="radio"
+                name="address-radio"
+                onChange={handleAddress}
+                value={index}
+                id={`address-radio${index}`}
+              />
+              <label htmlFor={`address-radio${index}`}></label>
+              <div className="row">
+                <div className="col-1">
+                  <p className="name-p">{address.name}</p>
+                  <p className="address-p">{address.street}</p>
+                  <p className="pin-p">{address.zip}</p>
+                </div>
+                <div className="col-2">
+                  <p className="phone-p">Phone: {address.phone}</p>
+                  <p className="city-p">{address.city}</p>
+                  <p className="state-p">{address.state}</p>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
         <div className="payment-option">
           <div>
-            <input type="radio" name="payment" id="payment1" defaultChecked />
+            <input
+              type="radio"
+              name="payment"
+              value={"cash"}
+              onChange={handlePayment}
+              id="payment1"
+              checked={payment === "cash"}
+            />
             <label htmlFor="payment1">Cash Payment</label>
           </div>
           <div>
-            <input type="radio" name="payment" id="payment2" />
+            <input
+              type="radio"
+              value={"card"}
+              onChange={handlePayment}
+              name="payment"
+              id="payment2"
+            />
             <label htmlFor="payment2">Online Payment</label>
           </div>
         </div>
@@ -165,11 +267,13 @@ const Checkout = () => {
             </div>
             <div>
               <h3>${total}</h3>
-              <h3>{items.length}</h3>
+              <h3>{totalItems}</h3>
             </div>
           </div>
           <p className="p-summary">Shipping and taxes included.</p>
-          <button className="order-btn">Proceed</button>
+          <button className="order-btn" onClick={handleProceed}>
+            Proceed
+          </button>
           <Link to="/" className="continue-btn">
             Cancel
           </Link>

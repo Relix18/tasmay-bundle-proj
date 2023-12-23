@@ -5,13 +5,16 @@ import { BsCart3 } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItems } from "../redux/cart/cartSlice";
-import { productBySearchAsync } from "../redux/product/productSlice";
-import { selectLoggedInUser } from "../redux/auth/authSlice";
+import {
+  productAsync,
+  productBySearchAsync,
+} from "../redux/product/productSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import { zipCodes } from "./utils/common.jsx";
+import { selectLoggedInUser } from "../redux/auth/authSlice.js";
 
 const Navbar = () => {
   const [search, setSearch] = useState("");
@@ -23,6 +26,7 @@ const Navbar = () => {
   const zipRef = useRef();
   const clearSearch = useRef("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector(selectLoggedInUser);
 
   const p = document.querySelector(".pin-res");
@@ -43,7 +47,9 @@ const Navbar = () => {
   const searchHandle = (e) => {
     setSearch(e.target.value);
   };
-  const searchButtonHandle = () => {
+  const searchButtonHandle = async () => {
+    navigate("/");
+    await dispatch(productAsync());
     dispatch(productBySearchAsync(search));
   };
 
@@ -183,7 +189,7 @@ const Navbar = () => {
                           </Link>
                         </div>
                         <div onClick={() => setShowUser(!showUser)}>
-                          <Link className="order" to="/my-order">
+                          <Link className="order" to="/orders">
                             My Orders
                           </Link>
                         </div>
