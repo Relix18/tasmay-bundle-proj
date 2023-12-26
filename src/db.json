@@ -1931,7 +1931,17 @@
       "email": "relix@gmail.com",
       "password": "Mumtaj@1",
       "name": "Relix",
-      "addresses": [],
+      "addresses": [
+        {
+          "name": "Arif Ahmad",
+          "email": "relix049@gmail.com",
+          "phone": "07080866300",
+          "street": "Gora Bazar",
+          "city": "Raebareli",
+          "state": "Uttar Pradesh",
+          "zip": "229001"
+        }
+      ],
       "id": 2
     }
   ],

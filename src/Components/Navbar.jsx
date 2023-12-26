@@ -156,7 +156,7 @@ const Navbar = () => {
           <div className="otherIcon">
             <Link className="cart" to="/cart">
               <BsCart3 />
-              <p>{items.length}</p>
+              <p>{user ? items.length : 0}</p>
             </Link>
             <div ref={divRef} className="userIcon">
               {user ? (
@@ -194,7 +194,7 @@ const Navbar = () => {
                           </Link>
                         </div>
                         <div onClick={() => setShowUser(!showUser)}>
-                          <Link className="logout" to="/">
+                          <Link className="logout" to="/logout">
                             Sign out
                           </Link>
                         </div>

@@ -4,6 +4,12 @@ export function createUser(user) {
   return axios.post("http://localhost:8080/user", user);
 }
 
+export function signOut(user) {
+  return new Promise(async (resolve) => {
+    resolve({ status: "success" });
+  });
+}
+
 export function checkUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     const email = loginInfo.email;

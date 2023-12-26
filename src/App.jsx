@@ -13,6 +13,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import UserOrdersPage from "./pages/UserOrdersPage";
 import PageNotFound from "./Components/PageNotFound";
 import UserProfilePage from "./pages/UserProfilePage";
+import Logout from "./Components/auth/Logout";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/*" element={<PageNotFound />} />
         <Route exact path="/product/:id" element={<ProductDetailsPage />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/logout" element={<Logout />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/forget-password" element={<ForgetPassword />} />
 

@@ -7,10 +7,9 @@ import {
   createUserAsync,
   selectLoggedInUser,
 } from "../../redux/auth/authSlice";
+import { greeting, index } from "../utils/common";
 
 const Signup = () => {
-  const greeting = ["Good Morning", "Good Afternoon", "Good Evening"];
-  const hours = new Date().getHours();
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
 
@@ -19,8 +18,6 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const index = hours >= 12 && hours < 17 ? 1 : hours >= 17 ? 2 : 0;
 
   return (
     <>

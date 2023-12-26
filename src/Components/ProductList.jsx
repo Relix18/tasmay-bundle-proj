@@ -78,6 +78,7 @@ const ProductList = () => {
         </div>
       ) : (
         <div id="productList">
+          {products.length === 0 && <p className="noMatch">No Match Found</p>}
           {products.map((item) => (
             <ProductCard
               key={item.id}

@@ -58,7 +58,6 @@ export const productBySearchAsync = createAsyncThunk(
   "products/fetchProductBySearch",
   async (search) => {
     const response = await fetchProductBySearch(search);
-    console.log(response.data);
     return response.data;
   }
 );

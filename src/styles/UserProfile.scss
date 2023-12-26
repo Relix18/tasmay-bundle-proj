@@ -13,13 +13,76 @@
     padding: 1rem;
     padding-left: 2rem;
 
+    h2 {
+      color: #e77728;
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+
+      span {
+        font-style: italic;
+        color: black;
+      }
+    }
+
     .userId {
       margin-bottom: 4rem;
       .userName {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        h1 {
+          font-size: 1.3rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          margin-top: 5px;
+        }
+
+        div {
+          display: flex;
+          gap: 1rem;
+
+          input {
+            width: 10rem;
+            height: 1rem;
+            border: 1px solid#ccc4c4;
+            outline-color: #e77728;
+            padding: 0.3rem;
+            padding-left: 0.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+          }
+          .save {
+            margin-top: 0px;
+            width: 4rem;
+            height: 1.8rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #e77728;
+          }
+
+          .cancel {
+            margin-top: 0px;
+            width: 4rem;
+            height: 1.8rem;
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.808);
+            background-color: rgba(75, 72, 72, 0.288);
+          }
+        }
+
+        .edit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 0px;
+          width: 1.5rem;
+          height: 1.5rem;
+          font-size: 1.2rem;
+          color: rgba(0, 0, 0, 0.808);
+          background-color: rgba(75, 72, 72, 0.288);
+        }
       }
 
       .email {

@@ -8,6 +8,7 @@ import {
   selectLoggedInUser,
 } from "../../redux/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { greeting, index } from "../utils/common";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,6 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const greeting = ["Good Morning", "Good Afternoon", "Good Evening"];
-  const day = new Date().getHours();
-
-  const index = day >= 12 && day < 17 ? 1 : day >= 17 ? 2 : 0;
 
   return (
     <>

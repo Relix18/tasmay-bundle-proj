@@ -4,7 +4,8 @@ import { selectUserInfo, updateUserAsync } from "../redux/user/userSlice";
 import { useForm } from "react-hook-form";
 import { State } from "country-state-city";
 import { useState } from "react";
-import { CiEdit } from "react-icons/ci";
+import { MdEdit } from "react-icons/md";
+import { greeting, index } from "./utils/common";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const UserProfile = () => {
   const states = State.getStatesOfCountry("IN");
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [addNew, setAddNew] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   const {
     register,
@@ -53,13 +55,54 @@ const UserProfile = () => {
     setAddNew(false);
   };
 
+  const handleNameEdit = () => {
+    setEdit(true);
+    setValue("name", user.name);
+  };
+
+  const handleEditName = (data) => {
+    const newUser = { ...user, name: data.name };
+    dispatch(updateUserAsync(newUser));
+    setEdit(false);
+  };
+
   return (
     <div id="Profile">
       <h1>My Profile</h1>
       <div key={user.id} className="user">
+        <h2>
+          {greeting[index]}, <span>{user.name}</span>
+        </h2>
         <div className="userId">
           <div className="userName">
-            Name: {user.name ? user.name : "New User"}
+            <h1>Name: {user.name ? user.name : "New User"}</h1>
+            <form
+              noValidate
+              onSubmit={handleSubmit((data) => handleEditName(data))}
+            >
+              {edit && (
+                <div>
+                  <input
+                    id="name"
+                    {...register("name", {
+                      required: "name is required",
+                    })}
+                    type="text"
+                  />
+                  <button className="save" type="submit">
+                    save
+                  </button>
+                  <button className="cancel" onClick={() => setEdit(false)}>
+                    cancel
+                  </button>
+                </div>
+              )}
+            </form>
+            {!edit && (
+              <button className="edit" onClick={() => handleNameEdit()}>
+                <MdEdit />
+              </button>
+            )}
           </div>
           <div className="email">email address : {user.email}</div>
           <button
